@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>brower-tech</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section class="warning">
+        <h2>Waarschuwing!</h2>
+        <p>Dit project is voor een school project gemaakt, ik werk niet voor de belastingdienst en heb dit alleen gemaakt om te leren over het designen van forms in html.</p>
+        <label>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="#000000" width="20" height="20" viewBox="0 0 200 200" data-name="Layer 1" id="Layer_1"><title/><path d="M114,100l49-49a9.9,9.9,0,0,0-14-14L100,86,51,37A9.9,9.9,0,0,0,37,51l49,49L37,149a9.9,9.9,0,0,0,14,14l49-49,49,49a9.9,9.9,0,0,0,14-14Z"/></svg>
+            <input id="exit" type="checkbox">
+        </label>
+    </section>
+
+    <form action="./pages/page-2.html">
+        <fieldset>
+            <legend>1 Gegevens van de overledene</legend>
+
+            <small>Vul hier de gegevens in van de overledene.</small>
+
+            <fieldset id="one-a">
+                <legend>1 A</legend>
+
+                <div>
+                    <label>
+                        voornaam
+                        <input type="text" name="voornaam" placeholder="voornaam" pattern="[A-Za-z]*" required>
+                    </label>
+            
+                    <label>
+                        tussenvoegsel
+                        <input type="text" name="tussenvoegsel" placeholder="tussenvoegsel" pattern="[A-Za-z]*" >
+                    </label>
+            
+                    <label>
+                        achternaam
+                        <input type="text" name="achternaam" placeholder="achternaam" pattern="[A-Za-z]*" required>
+                    </label>
+                </div>
+                
+                <label>
+                    BSN
+                    <input type="text" name="bsn" placeholder="123456789" minlength="9" maxlength="9" inputmode="numeric" pattern="\d{9}" required>
+                </label>
+        
+                <label>
+                    overlijdensdatum
+                    <input type="date" name="deathdate" required>
+                </label>
+            </fieldset>
+
+            <fieldset id="one-b">
+                <legend>1 B</legend>
+
+                <fieldset id="registered-partner">
+                    <legend>Was de overledene getrouwd of had de overledene een geregistreerd partner op het moment van overlijden?</legend>
+
+                    <label>
+                        <input type="radio" name="did-they-have-partner" value="nee" required>
+                        nee
+                    </label>
+
+                    <label>
+                        <input type="radio" name="did-they-have-partner" value="ja" required>
+                        ja
+                    </label>
+                </fieldset>
+
+                <fieldset id="notary">
+                    <legend>Hadden de overledene en diens echtgenoot of geregistreerd partner huwelijkse of partnerschapsvoorwaarden laten vastleggen in een notariële akte?</legend>
+
+                    <div>
+                        <label>
+                            <input type="radio" name="nota-akte" value="nee">
+                            nee
+                        </label>
+
+                        <label>
+                            <input type="radio" name="nota-akte" value="ja">
+                            ja
+                        </label>
+                    </div>
+
+                    <p>Stuur een kopie van de akte mee met de aangifte.</p>
+
+                    <label>
+                        upload bestand
+                        <input type="file" name="kopie-akte">
+                    </label>
+                </fieldset>
+
+                <fieldset id="settlement-clause">
+                    <legend>Hadden de overledene en diens partner een finaal verrekenbeding?</legend>
+
+                    <label>
+                        <input type="radio" name="verrekenbeding" value="nee">
+                        nee
+                    </label>
+
+                    <label>
+                        <input type="radio" name="verrekenbeding" value="ja">
+                        ja
+                    </label>
+                </fieldset>
+
+                <label>
+                    Datum huwelijkse of partnerschapsvoorwaarden
+                    <input type="date" name="mariagedate">
+                </label>
+            </fieldset>
+
+            <button type="submit">Volgende</button>
+        </fieldset>
+    </form>
+</body>
+<script src=".//script/script.js"></script>
+<script src=".//script/sessionStorage.js"></script>
+</html>

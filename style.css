@@ -1,0 +1,342 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--main-light-grey);
+    display: grid;
+    grid-template-columns: 10% 1fr 10%;
+
+    --main-white: #fff;
+    --main-black: #000;
+    --main-light-grey: #ddd;
+    --main-grey: #bbb;
+    --main-yellow: #ffc917;
+    --main-dark-yellow: #ffb519;
+    --main-blue: #0063d3;
+    --main-dark-blue: #004ba0;
+    --main-blue-font: #003082;
+
+    --main-red: #ff1717;
+    --main-green: #19c424;
+
+    --section-padding-top: 2em;
+    --section-padding-right: 2em;
+
+    --input-padding-top: .5em;
+    --input-padding-right: 1em;
+
+    --font-xxl-size: 2.375em;
+    --font-xxl-line-height: 3.75em;
+    --font-legend-size: 2em;
+
+    h2 {
+        font-size: var(--font-xxl-size);
+    }
+}
+
+/* warning at the top to prove that this is a school project */
+.warning {
+    grid-column: 1 / 4;
+    padding: var(--section-padding-top) var(--section-padding-right);
+    background-color: var(--main-yellow);
+    box-shadow: inset 0 -2px 0 var(--main-dark-yellow);
+    color: var(--main-blue-font);
+    position: relative;
+
+    h2 {
+        margin: 0 0 .5em 0;
+    }
+
+    label {
+        position: absolute;
+        right: var(--section-padding-right);
+        top: var(--section-padding-top);
+        cursor: pointer;
+
+        svg {
+            width: 1.5em;
+            height: 1.5em;
+            fill: var(--main-blue-font);
+        }
+
+        input {
+            display: none;
+        }
+    }
+
+    &:has(:checked) {
+        display: none;
+    }
+}
+
+form {
+    grid-column: 2 / 3;
+    background-color: var(--main-white);
+    padding: var(--section-padding-top) var(--section-padding-right);
+    box-shadow: inset 0 -2px 0 var(--main-grey);
+    color: var(--main-blue-font);
+    margin: 3em 0;
+
+    /* general fieldset */
+    > fieldset {
+
+        /* general legend styling */
+        legend {
+            width: fit-content;
+            background-color: var(--main-dark-blue);
+            color: var(--main-white);
+            padding: .25em .5em;
+            font-size: var(--font-legend-size); /* this font size is only for the parent fieldset */
+        }
+
+        /* A and B fieldsets */
+        > fieldset {
+
+            > legend {
+                font-size: 1.5em; /* font-size for A and B sections */
+                margin-bottom: 1em;
+            }
+
+            > fieldset, div {
+                display: flex;
+                flex-wrap: wrap;
+                column-gap: 2em;
+                row-gap: 1em;
+
+                legend {
+                    background-color: transparent;
+                    padding: 0;
+                    color: var(--main-blue-font);
+                    font-size: 1em;
+                    margin-bottom: 1em;
+                }
+
+                p {
+                    margin-block-end: 0;
+                }
+            }
+
+            /* put a margin bottom on every element except legend */
+            > :nth-last-child(n + 2):not(legend) {
+                margin-bottom: 2em;
+            }
+        }
+
+        /* put a margin bottom between every A B question for spacing */
+        > fieldset:nth-last-of-type(n + 2) {
+            margin-bottom: 2em;
+        }
+
+        label {
+            width: fit-content;
+            display: flex;
+            flex-direction: column;
+        }
+    }
+
+    label {
+        display: block;
+        width: 100%;
+        height: fit-content;
+
+        p {
+            margin: 1em 0 0 0;
+            color: var(--main-blue-font);
+        }
+    }
+
+    /* -------------- */
+    /* required style */
+    /* -------------- */
+    /* labels for input type text and date */
+    label:has(input[type=text]:required, input[type=date]),
+    fieldset:has(> label > input[type=radio]:required) legend,
+    fieldset:has(> div > label > input[type=radio]:required) legend,
+    p:has(+ label > input:required) {
+        position: relative;
+
+        &::before {
+            position: absolute;
+            right: calc(100% + 2px);
+            content: "*";
+            width: fit-content;
+            color: var(--main-red);
+        }
+    }
+}
+
+/* general element styling */
+fieldset {
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
+small {
+    display: block;
+    margin: .5em 1em;
+    color: var(--main-black);
+}
+
+
+/* ------------------- */
+/* -- input styless -- */
+/* ------------------- */
+input[type=text], 
+input[type=number],
+input[type=date] {
+    background-color: var(--main-light-grey);
+    padding: var(--input-padding-top);
+    border: none;
+
+    &:focus {
+        outline: none !important;
+        box-shadow: inset 0 -2px 0 var(--main-dark-yellow);
+    }
+
+    &:user-invalid {
+        outline: 2px solid var(--main-red);
+    }
+
+    &:user-valid {
+        outline: 2px solid var(--main-green);
+    }
+}
+
+/* input type radio */
+label:has(input[type=radio]) {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    column-gap: .5em;
+}
+
+input[type=radio] {
+    appearance: none;
+    width: 1em;
+    height: 1em;
+    border: 2px solid var(--main-dark-yellow);
+    border-radius: 50%;
+    margin: 0;
+
+    &:checked {
+        background-color: var(--main-yellow);
+    }
+}
+
+
+/* input type file */
+label:has(input[type=file]){
+    width: fit-content;
+    background-color: var(--main-yellow);
+    color: var(--main-blue-font);
+    border: 2px solid var(--main-dark-yellow);
+    padding: var(--input-padding-top);
+    cursor: pointer;
+
+    /* styling the label is easier */
+    input {
+        display: none;
+    }
+}
+
+
+/* input type is subit */
+button[type=submit] {
+    width: fit-content;
+    background-color: var(--main-yellow);
+    color: var(--main-blue-font);
+    border: 2px solid var(--main-dark-yellow);
+    padding: var(--input-padding-top);
+    cursor: pointer;
+    font-size: 1em;
+    margin-top: 1em;
+}
+
+/* add extra space between label and inputs to compensate for outline overlapping on input */
+input[type=text],
+input[type=date] {
+    margin-top: .25em;
+}
+
+
+
+/* ------------------ */
+/* -- mediaquery's -- */
+/* ------------------ */
+@media (max-width: 750px) {
+    form {
+        grid-column: 1 / 4;
+        margin: 0;
+    }
+}
+
+/* ---------------------- */
+/* -- specific styling -- */
+/* ---------------------- */
+#one-b {
+    &:has(input[name="did-they-have-partner"][value="ja"]:not(:checked)) {
+        fieldset:nth-of-type(n + 2), & > label {
+            display: none;
+        }
+    }
+
+    #notary {
+        flex-direction: column;
+
+        &:has(input[value="ja"]:not(:checked)) {
+            p, & > label {
+                display: none;
+            }
+        }
+
+        fieldset:first-of-type {
+            margin-top: 0;
+        }
+
+        /* because the label is the input */
+        &:has(input[type=file]:user-invalid)::after {
+            content: "Upload een bestand";
+        }
+    }
+}
+
+
+/* ---------------------------------- */
+/* alert messages for each input type */
+/* ---------------------------------- */
+
+/* input text */
+label:has(:user-invalid)::after,
+fieldset > fieldset > fieldset:has(:user-invalid)::after {
+    background-image: url("./img/alert.svg");
+    background-repeat: no-repeat;
+    background-size: 1em;
+    padding-left: 1.25em;
+    margin-top: .25em;
+    color: var(--main-red);
+    display: block;
+}
+
+label:has(input[name=voornaam]:user-invalid)::after {
+    content: "Naam is incorrect";
+}
+
+label:has(input[name=achternaam]:user-invalid)::after {
+    content: "Achternaam is incorrect";
+}
+
+label:has(input[name=bsn]:user-invalid)::after {
+    content: "Een BSN moet 9 cijfers bevatten";
+}
+
+/* input date */
+label:has(input[type=date]:user-invalid)::after {
+    content: "Vul deze datum in";
+}
+
+/* input radio fieldset */
+fieldset > fieldset > fieldset:has(:user-invalid)::after {
+    content: "maak een keuze";
+    margin-top: 0;
+}
